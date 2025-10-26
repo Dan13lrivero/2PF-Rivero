@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing-module';
 import { Dashboard } from './dashboard';
 import { SharedModule } from '../../shared/shared-module';
 import { Home } from './home/home';
+import { UsersModule } from '../../users/users-module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { Home } from './home/home';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    UsersModule
   ]
 })
 export class DashboardModule { }

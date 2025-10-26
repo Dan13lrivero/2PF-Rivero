@@ -9,11 +9,11 @@ const routes: Routes = [
   },
   {
     path: 'courses',
-    loadChildren: () => import('./courses/courses-module').then((m) => m.CoursesModule),
+    loadChildren: () => import('./courses/courses-module').then(m => m.CoursesModule),
   },
   {
     path: 'students',
-    loadChildren: () => import('./students/students-module').then((m) => m.StudentsModule),
+    loadComponent: () => import('./students/students').then(m => m.Students),
   },
 ];
 

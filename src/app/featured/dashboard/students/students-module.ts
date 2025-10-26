@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { StudentsRoutingModule } from './students-routing-module';
 import { Students } from './students';
+import { UsersModule } from '../../../users/users-module';
 
 
 @NgModule({
   declarations: [
-    Students
+    
   ],
   imports: [
     CommonModule,
-    StudentsRoutingModule
+    StudentsRoutingModule,
+    UsersModule
   ]
 })
 export class StudentsModule { }
