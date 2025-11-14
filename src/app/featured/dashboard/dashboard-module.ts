@@ -7,6 +7,10 @@ import { SharedModule } from '../../shared/shared-module';
 import { Home } from './home/home';
 import { UsersModule } from '../../users/users-module';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { UsersModule } from '../../users/users-module';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    UsersModule
+    UsersModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule
   ]
 })
 export class DashboardModule { }
