@@ -11,20 +11,18 @@ export class AuthService {
   private usersUrl = `${API_URL}/users`;
   user: User | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.user = { email: token } as User;
+    }
+  }
 
   login(email: string, password: string) {
     this.http.get<User[]>(this.usersUrl).subscribe((users) => {
       const user = users.find((user) => user.email === email);
-
-      if (!user) {
-        throw new Error('Email es inválido');
-      }
-
-      if (user.password !== password) {
-        throw new Error('Contraseña es inválida');
-      }
-
+      if (!user) throw new Error('Email es inválido');
+      if (user.password !== password) throw new Error('Contraseña es inválida');
       localStorage.setItem('token', user.email);
       this.user = user;
       this.router.navigate(['dashboard']);
@@ -39,14 +37,6 @@ export class AuthService {
 
   isAuthenticated() {
     const token = localStorage.getItem('token');
-
-    if (!token) {
-      return false;
-    }
-
-    const isAuthenticated = token === this.user?.email;
-    console.log(isAuthenticated);
-
-    return isAuthenticated;
+    return !!token;
   }
 }
