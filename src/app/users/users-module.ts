@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../shared/pipes/shared-modules';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { UserServices } from '../services/user-service';
+import { UserServices } from '../core/services/user-service';
 
 
 

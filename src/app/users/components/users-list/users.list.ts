@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, ViewChild  } from '@angular/cor
 import { User } from '../../interface/User'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { UserServices } from '../../../services/user-service';
+import { UserServices } from '../../../core/services/user-service';
 import { ActivationStart } from '@angular/router';
  
 @Component({

@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { User } from './interface/User'; 
 import { MatTableDataSource } from '@angular/material/table';
-import { UserServices } from '../services/user-service';
+import { UserServices } from '../core/services/user-service';
 
 
 @Component({

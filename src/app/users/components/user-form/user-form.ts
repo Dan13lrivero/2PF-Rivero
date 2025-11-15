@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../users/interface/User';
-import { UserServices } from '../../../services/user-service';
+import { UserServices } from '../../../core/services/user-service';
 
 
 @Component({
