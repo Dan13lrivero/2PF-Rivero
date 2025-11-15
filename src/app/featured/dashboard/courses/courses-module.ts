@@ -7,17 +7,8 @@ import { CoursesTable } from './courses-table/courses-table';
 import { CoursesForm } from './courses-form/courses-form';
 import { SharedModule } from '../../../shared/shared-module';
 
-
 @NgModule({
-  declarations: [
-    Courses,
-    CoursesTable,
-    CoursesForm
-  ],
-  imports: [
-    CommonModule,
-    CoursesRoutingModule,
-    SharedModule
-  ]
+  declarations: [Courses, CoursesTable, CoursesForm],
+  imports: [CommonModule, CoursesRoutingModule, SharedModule],
 })
-export class CoursesModule { }
+export class CoursesModule {}
