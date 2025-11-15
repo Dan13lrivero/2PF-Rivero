@@ -17,7 +17,15 @@ describe('Home', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debería crear el componente', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('debería ser un componente no standalone', () => {
+    expect(component).toBeDefined();
+  });
+
+  it('debería inicializar sin errores', () => {
+    expect(() => fixture.detectChanges()).not.toThrow();
   });
 });

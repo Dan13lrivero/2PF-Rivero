@@ -1,4 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, isDevMode } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @Component({
   selector: 'app-root',

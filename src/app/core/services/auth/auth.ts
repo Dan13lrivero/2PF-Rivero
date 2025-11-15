@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../../utils/constants';
 import { User } from './model/User';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,22 +12,10 @@ export class AuthService {
   private usersUrl = `${API_URL}/users`;
   user: User | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.user = { email: token } as User;
-    }
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string) {
-    this.http.get<User[]>(this.usersUrl).subscribe((users) => {
-      const user = users.find((user) => user.email === email);
-      if (!user) throw new Error('Email es inválido');
-      if (user.password !== password) throw new Error('Contraseña es inválida');
-      localStorage.setItem('token', user.email);
-      this.user = user;
-      this.router.navigate(['dashboard']);
-    });
+    return this.http.get<User[]>(this.usersUrl);
   }
 
   logout() {
@@ -35,8 +24,11 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
+  setToken(email: string) {
+    localStorage.setItem('token', email);
+  }
+
   isAuthenticated() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return !!localStorage.getItem('token');
   }
 }
