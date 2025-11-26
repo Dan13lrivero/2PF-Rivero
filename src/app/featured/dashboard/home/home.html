@@ -1,1 +1,21 @@
-<h1>Bienvenido</h1>
+<h1>Bienvenido {{ (user$ | async)?.username }}</h1>
+
+@if ((user$ | async)?.role === "ADMIN") {
+    <div class="container-chart">
+    <mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Estadisticas de la semana</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="https://th.bing.com/th/id/OIP.mj0FBbaAzbwFTUpsFGgJ_AHaFP?w=235&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+    </p>En este analisis se muestra la evolucion de las ventas de productos en la semana pasada. Se puede observar que las ventas aumentaron en un 20% con respecto a la semana anterior. 
+  </mat-card-content>
+  <mat-card-actions>
+    <button matButton>LIKE</button>
+    <button matButton>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+</div>
+
+}

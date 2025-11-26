@@ -39,7 +39,7 @@ export class Login {
         .subscribe((res) => {
           console.log(res);
 
-          const user = res.find((user) => user.email === this.loginForm.value.email);
+          const user = res;
 
           if (!user) {
             throw new Error('Email es inválido');
@@ -49,7 +49,6 @@ export class Login {
             throw new Error('Contraseña es inválida');
           }
 
-          this.authService.setToken(user.email);
           this.store.dispatch(setAuthUser({ payload: user }));
           this.router.navigate(['dashboard']);
         });
