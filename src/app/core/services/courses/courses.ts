@@ -19,6 +19,10 @@ export class CoursesService {
     this.getCourses();
   }
 
+  getCoursesForEffect() {
+    return this.http.get<Course[]>(this.coursesUrl);
+  }
+  
   getCourses() {
     this.http.get<Course[]>(this.coursesUrl).subscribe((courses) => {
       this.courses = courses;
