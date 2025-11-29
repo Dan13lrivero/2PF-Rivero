@@ -22,7 +22,7 @@ export class CoursesService {
   getCoursesForEffect() {
     return this.http.get<Course[]>(this.coursesUrl);
   }
-  
+
   getCourses() {
     this.http.get<Course[]>(this.coursesUrl).subscribe((courses) => {
       this.courses = courses;
@@ -38,7 +38,8 @@ export class CoursesService {
     const newId = String(Number(this.courses[this.courses.length - 1].id) + 1);
     course.id = newId;
     this.http.post<Course>(this.coursesUrl, course).subscribe((course) => {
-      this.getCourses();
+      this.courses.push(course);
+      this.courseSubject.next([...this.courses]);
     });
   }
 
@@ -51,10 +52,12 @@ export class CoursesService {
   }
 
   deleteCourse(id: number) {
-    const updatedCourses = this.courses.filter((c) => c.id !== id);
-    this.http.delete<Course>(`${this.coursesUrl}/${id}`).subscribe(() => {
-      this.courses = updatedCourses;
-      this.courseSubject.next(updatedCourses);
+    this.http.delete(`${this.coursesUrl}/${id}`).subscribe({
+      next: () => {
+        this.courses = this.courses.filter(c => String(c.id) !== String(id));
+        this.courseSubject.next([...this.courses]);
+      },
+      error: (err) => console.error(err)
     });
   }
 }

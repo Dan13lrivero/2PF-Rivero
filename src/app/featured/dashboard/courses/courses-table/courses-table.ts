@@ -49,7 +49,7 @@ export class CoursesTable {
   }
 
   onDeleteCourse(id: number) {
-    this.courseService.deleteCourse(id);
+    this.store.dispatch(CoursesActions.deleteCourse({ id }));
   }
 
   applyFilter(event: Event) {

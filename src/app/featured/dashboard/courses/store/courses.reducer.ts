@@ -14,7 +14,6 @@ export const initialState: CoursesState = {
     courses: [],
     isLoading: false,
     error: null,
-
 }
 
 export const reducer = createReducer(
@@ -25,7 +24,7 @@ export const reducer = createReducer(
             isLoading: true,
         };
     }),
-    on(CoursesActions.loadCoursesSucess, (state, {courses}) => {
+    on(CoursesActions.loadCoursesSuccess, (state, {courses}) => {
         return {
             ...state,
             isLoading: false,
@@ -33,6 +32,26 @@ export const reducer = createReducer(
         }
     }),
     on(CoursesActions.loadCoursesFailure, (state, {error}) =>{
+        return {
+            ...state,
+            isLoading: false,
+            error,
+        }
+    }),
+    on(CoursesActions.deleteCourse, (state) => {
+        return {
+            ...state,
+            isLoading: true,
+        };
+    }),
+    on(CoursesActions.deleteCourseSuccess, (state, {id}) => {
+        return {
+            ...state,
+            isLoading: false,
+            courses: state.courses.filter(c => String(c.id) !== String(id)),
+        }
+    }),
+    on(CoursesActions.deleteCourseFailure, (state, {error}) => {
         return {
             ...state,
             isLoading: false,
