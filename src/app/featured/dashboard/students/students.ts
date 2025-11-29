@@ -10,8 +10,7 @@ import { UsersModule } from '../../../users/users-module';
   selector: 'app-students',
   standalone: true,
   imports: [CommonModule, UsersModule],
-  templateUrl: './students.html',
-  styleUrls: ['./students.css']
+  templateUrl: './students.html'
 })
 export class Students implements OnInit {
   usersList: User[] = []; 

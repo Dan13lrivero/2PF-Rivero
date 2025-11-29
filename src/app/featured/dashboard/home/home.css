@@ -1,4 +1,48 @@
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px;
+}
+
+.admin-bg {
+  background-image: url('/bg-home.jpg');
+}
+
+.user-bg {
+  background-image: url('/bg-user.jpg');
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
 .container-chart {
-    display: grid;
-    grid-template-columns: repeat(2, 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.example-card {
+  max-width: 400px;
+  width: 100%;
+}
+
+.example-card mat-card-header {
+  justify-content: center;
+}
+
+.example-card mat-card-content {
+  text-align: center;
+}
+
+.example-card mat-card-actions {
+  justify-content: center;
 }
