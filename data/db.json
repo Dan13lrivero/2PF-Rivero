@@ -25,7 +25,7 @@
   "courses": [
     {
       "id": "1",
-      "title": "React",
+      "title": "React ",
       "description": "React es una biblioteca de JavaScript para construir interfaces de usuario. Es mantenida por Facebook y una comunidad de desarrolladores individuales y empresas. React se puede utilizar como base en el desarrollo de aplicaciones de página única o móviles.",
       "beginDate": "2022-01-01",
       "endDate": "2022-12-31",

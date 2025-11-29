@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AuthService } from './auth';
 import { API_URL } from '../../utils/constants';
 import { User, Role } from './model/User';
@@ -9,19 +10,24 @@ describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
   let router: Router;
+  let store: MockStore;
+
+  const initialState = {};
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         AuthService,
-        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } }
+        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } },
+        provideMockStore({ initialState })
       ]
     });
 
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
     router = TestBed.inject(Router);
+    store = TestBed.inject(MockStore);
 
     localStorage.clear();
   });
@@ -75,8 +81,8 @@ describe('AuthService', () => {
         { id: 1, username: 'testuser', email: 'test@test.com', password: '123', role: Role.ADMIN }
       ];
 
-      service.login('test@test.com', '123').subscribe((users) => {
-        expect(users).toEqual(mockUsers);
+      service.login('test@test.com', '123').subscribe((user) => {
+        expect(user).toEqual(mockUsers[0]);
       });
 
       const req = httpMock.expectOne(`${API_URL}/users`);
