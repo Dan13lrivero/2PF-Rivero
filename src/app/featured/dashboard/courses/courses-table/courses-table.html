@@ -1,14 +1,15 @@
-@if (isLoading$ | async){
-  <mat-spinner></mat-spinner>
-} @else {
-  <button id="create" mat-flat-button color="primary" routerLink="create">Crear Curso</button>
+<button id="create" mat-flat-button color="primary" routerLink="create">Crear Curso</button>
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Angular" #input />
 </mat-form-field>
 
-<div class="mat-elevation-z8">
+@if (isLoading$ | async){
+  <mat-spinner></mat-spinner>
+}
+
+<div class="mat-elevation-z8" [style.display]="(isLoading$ | async) ? 'none' : 'block'">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -61,9 +62,9 @@
   </table>
 
   <mat-paginator
+    [pageSize]="5"
     [pageSizeOptions]="[5, 10, 25, 100]"
+    showFirstLastButtons
     aria-label="Select page of users"
   ></mat-paginator>
 </div>
-}
-

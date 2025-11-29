@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Course, courseColumns } from '../../../../core/services/courses/model/Course';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,11 +15,11 @@ import { CoursesActions } from '../store/courses.actions';
   templateUrl: './courses-table.html',
   styleUrl: './courses-table.css',
 })
-export class CoursesTable {
+export class CoursesTable implements AfterViewInit {
   displayedColumns: string[] = courseColumns;
   dataSource = new MatTableDataSource<Course>([]);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   courses$: Observable<Course[]>;
   isLoading$: Observable<boolean>;
@@ -37,6 +37,7 @@ export class CoursesTable {
     this.courses$.subscribe({
       next: (courses) => {
         this.dataSource.data = courses;
+        this.updatePaginator();
       },
       error: (error) => {
         console.log('Error loading courses:', error);
@@ -45,7 +46,16 @@ export class CoursesTable {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+      this.updatePaginator();
+    }
+  }
+
+  updatePaginator() {
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.length = this.dataSource.data.length;
+    }
   }
 
   onDeleteCourse(id: number) {
