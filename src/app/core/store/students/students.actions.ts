@@ -1,12 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '../../../users/interface/User';
-
+import { Student } from '../../models/Student'; 
 
 export const loadStudents = createAction('[Students] Load Students');
 
 export const loadStudentsSuccess = createAction(
   '[Students] Load Students Success',
-  props<{ students: User[] }>()
+  props<{ students: Student[] }>() 
 );
 
 export const loadStudentsFailure = createAction(

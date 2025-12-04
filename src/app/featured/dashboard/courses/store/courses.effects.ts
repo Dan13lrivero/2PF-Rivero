@@ -5,7 +5,7 @@ import { CoursesActions } from './courses.actions';
 import { catchError, concatMap, delay, map, of, tap } from 'rxjs';
 
 @Injectable()
-export class CoursesEffect {
+export class CoursesEffect { 
   loadCourses$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CoursesActions.loadCourses),

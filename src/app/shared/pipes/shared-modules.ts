@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NombreCompletoPipe } from '../pipes/nombreCompleto/nombreCompleto-pipe';
-
-
+import { NombreCompletoPipe } from './nombreCompleto/nombreCompleto-pipe';
 
 @NgModule({
   declarations: [

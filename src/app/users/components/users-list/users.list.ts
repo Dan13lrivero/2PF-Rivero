@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild  } from '@angular/core';
-import { User } from '../../interface/User'
+import { Student } from '../../../core/models/Student'; 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { UserServices } from '../../../core/services/user-service';
-import { ActivationStart } from '@angular/router';
+import { StudentsService } from '../../../core/services/students/students.service'; 
  
 @Component({
   selector: 'user-list',
@@ -12,30 +11,29 @@ import { ActivationStart } from '@angular/router';
   styleUrls: ['./user-list.css']
 })
 export class UsersList {
-  @Input() users: User[] = [];
+  @Input() students: Student[] = []; 
 
   displayedColumns: string[] = ['nombreCompleto', 'email', 'actions']
-  dataSource = new MatTableDataSource<User>();
+  dataSource = new MatTableDataSource<Student>(); 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private userService: UserServices) {
-    this.userService.users$.subscribe((users) => {
-      this.dataSource.data = users;
+  constructor(private studentsService: StudentsService) { 
+    this.studentsService.students$.subscribe((students) => { 
+      this.dataSource.data = students;
     })
   }
 
-  
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.userService.getUsers();
+    this.studentsService.getStudents(); 
   }
 
-    onEditUser(id: number) {
-      this.userService.setUpdateUser(id);
-    }
-    onDeleteUser(id: number) {
-      this.userService.deleteUser(id);
-    }
+  onEditUser(id: number) {
+    this.studentsService.setUpdateStudent(id); 
+  }
+  
+  onDeleteUser(id: number) {
+    this.studentsService.deleteStudent(id); 
+  }
 }

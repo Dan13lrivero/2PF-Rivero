@@ -1,72 +1,84 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../../users/interface/User';
-import { UserServices } from '../../../core/services/user-service';
-
+import { Subscription } from 'rxjs';
+import { Student } from '../../../core/models/Student';
+import { StudentsService } from '../../../core/services/students/students.service';
 
 @Component({
   selector: 'app-user-form',
   standalone: false,
   templateUrl: './user-form.html',
-  styleUrl: './user-form.css'
+  styleUrls: ['./user-form.css']
 })
-export class UserForm {
+export class UserForm implements OnInit, OnDestroy {
   public userForm: FormGroup;
   isEditing: boolean = false;
-  
-  constructor(private fb: FormBuilder, private userService: UserServices) {
+  private sub!: Subscription;
+
+  constructor(private fb: FormBuilder, private studentsService: StudentsService) {
     this.userForm = this.fb.group({
-      id: [''],
-      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-      apellido: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      id: [null],
+      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      apellido: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       email: ['', [Validators.email]]
     });
+  }
 
-    this.userService.userEdit$.subscribe((user) => {
-      if(user) {
+  ngOnInit(): void {
+    this.sub = this.studentsService.studentEdit$.subscribe((student) => {
+      if (student) {
         this.userForm.patchValue({
-          id: user.id,
-          nombre: user.nombre,
-          apellido: user.apellido,
-          email: user.email,
-        })
+          id: student.id ?? null,
+          nombre: student.nombre ?? '',
+          apellido: student.apellido ?? '',
+          email: student.email ?? ''
+        });
         this.isEditing = true;
       } else {
         this.isEditing = false;
         this.userForm.reset();
       }
-    })
-
+    });
   }
 
-
-
-  ngOnChanges(){
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.userForm.invalid) {
       alert('Los campos deben ser validos');
       return;
     }
 
     if (this.isEditing) {
-      this.userService.updateUser(this.userForm.value.id, this.userForm.value);
+      const id = this.userForm.value.id;
+      this.studentsService.updateStudent(id, this.userForm.value);
     } else {
-      this.userService.addUser(this.userForm.value);
+      const newStudent: Partial<Student> = {
+        nombre: this.userForm.value.nombre,
+        apellido: this.userForm.value.apellido,
+        email: this.userForm.value.email
+      };
+      this.studentsService.addStudent(newStudent as Student);
     }
 
     this.userForm.reset();
     this.isEditing = false;
   }
-  get isNombreInvalid() {
-    return this.userForm.controls['nombre'].dirty && this.userForm.controls['nombre'].invalid;
-  }
-  get isApellidoInvalid() {
-    return this.userForm.controls['apellido'].dirty && this.userForm.controls['apellido'].invalid;
-  }
-  get isEmailInvalid() {
-    return this.userForm.controls['email'].dirty && this.userForm.controls['email'].invalid;
+
+  get isNombreInvalid(): boolean {
+    const c = this.userForm.controls['nombre'];
+    return c.dirty && c.invalid;
   }
 
+  get isApellidoInvalid(): boolean {
+    const c = this.userForm.controls['apellido'];
+    return c.dirty && c.invalid;
+  }
+
+  get isEmailInvalid(): boolean {
+    const c = this.userForm.controls['email'];
+    return c.dirty && c.invalid;
+  }
 }

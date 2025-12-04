@@ -1,10 +1,10 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as StudentsActions from './students.actions';
-import { User } from '../../../users/interface/User';
+import { Student } from '../../models/Student'; 
 
 export interface StudentsState {
   [x: string]: any;
-  students: User[];
+  students: Student[]; 
   loading: boolean;
 }
 

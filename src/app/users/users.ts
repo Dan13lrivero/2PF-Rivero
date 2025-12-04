@@ -1,8 +1,7 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { User } from './interface/User'; 
+import { Component, AfterViewInit } from '@angular/core';
+import { Student } from '../core/models/Student';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserServices } from '../core/services/user-service';
-
+import { StudentsService } from '../core/services/students/students.service';
 
 @Component({
   selector: 'app-users',
@@ -10,35 +9,31 @@ import { UserServices } from '../core/services/user-service';
   templateUrl: './users.html',
   styleUrls: ['./users.css']
 })
-export class Users {
-  nombre: string = "";
-  apellido: string = "";
-  edad: number = 30;
-  usersList: User[] = [];
-  userToEdit: User | null = null;
+export class Users implements AfterViewInit {
 
-  h1Style = 'font-size: 25px; color: red;'
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'edad', 'acciones'];
+  dataSource = new MatTableDataSource<Student>();
 
-  constructor(private userService: UserServices) {
+  studentToEdit: Student | null = null;
+
+  constructor(private studentsService: StudentsService) {}
+
+  ngAfterViewInit() {
+    this.studentsService.students$.subscribe((students) => {
+      this.dataSource.data = students;
+    });
   }
 
-  onAddUser(user: User) {
-    console.log(user);
-    this.userService.addUser(user);
-
-}
-
-onEditUser(user: User) {
-  this.userToEdit = user;
-}
-
-onEditRecieved(user: User) {
-  let response = this.userService.updateUser(user.id, user);
-  
-  if( response) {
-    this.userToEdit = null;
+  onAddUser(student: Student) {
+    this.studentsService.addStudent(student);
   }
-  
-}
 
+  onEditUser(student: Student) {
+    this.studentToEdit = student;
+  }
+
+  onEditRecieved(student: Student) {
+    this.studentsService.updateStudent(student.id, student);
+    this.studentToEdit = null;
+  }
 }

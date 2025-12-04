@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../users/interface/User';
-import { UserServices } from '../../../core/services/user-service';
+import { Student } from '../../../core/models/Student'; 
+import { StudentsService } from '../../../core/services/students/students.service'; 
 import { CommonModule } from '@angular/common';
 import { UsersList } from '../../../users/components/users-list/users.list';
 import { UserForm } from '../../../users/components/user-form/user-form';
@@ -13,12 +13,12 @@ import { UsersModule } from '../../../users/users-module';
   templateUrl: './students.html'
 })
 export class Students implements OnInit {
-  usersList: User[] = []; 
+  studentsList: Student[] = []; 
 
-  constructor(private userService: UserServices) {}
+  constructor(private studentsService: StudentsService) {} 
 
   ngOnInit(): void {
-    this.userService.users$.subscribe(users => this.usersList = users);
-    this.userService.getUsers();
+    this.studentsService.students$.subscribe(students => this.studentsList = students); 
+    this.studentsService.getStudents(); 
   }
 }

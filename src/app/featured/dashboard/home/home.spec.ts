@@ -1,44 +1,44 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Home } from './home';
+import { provideMockStore } from '@ngrx/store/testing';
+import { selectUser } from '../../../core/store/auth/auth.selector';
+import { MatCardModule } from '@angular/material/card';
 
 describe('Home', () => {
   let component: Home;
   let fixture: ComponentFixture<Home>;
-  let store: MockStore;
 
   const initialState = {
     auth: {
-      user: null
+      user: {
+        id: 1,
+        username: 'user test',
+        email: 'test@gmail.com',
+        role: 'USER'
+      }
     }
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [Home],
+      imports: [MatCardModule],
       providers: [
-        provideMockStore({ initialState })
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+        provideMockStore({
+          initialState,
+          selectors: [
+            { selector: selectUser, value: initialState.auth.user }
+          ]
+        })
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Home);
     component = fixture.componentInstance;
-    store = TestBed.inject(MockStore);
     fixture.detectChanges();
   });
 
-  it('debería crear el componente', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('debería ser un componente no standalone', () => {
-    expect(component).toBeDefined();
-  });
-
-  it('debería inicializar sin errores', () => {
-    expect(() => fixture.detectChanges()).not.toThrow();
   });
 });

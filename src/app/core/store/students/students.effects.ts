@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as StudentsActions from './students.actions';
-import { UserServices } from '../../../core/services/user-service';
+import { StudentsService } from '../../services/students/students.service'; 
 import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class StudentsEffects {
     this.actions$.pipe(
       ofType(StudentsActions.loadStudents),
       mergeMap(() =>
-        this.userService.users$.pipe(
+        this.studentsService.students$.pipe( 
           map((students) =>
             StudentsActions.loadStudentsSuccess({ students })
           )
@@ -19,5 +19,8 @@ export class StudentsEffects {
     )
   );
 
-  constructor(private actions$: Actions, private userService: UserServices) {}
+  constructor(
+    private actions$: Actions,
+    private studentsService: StudentsService 
+  ) {}
 }
