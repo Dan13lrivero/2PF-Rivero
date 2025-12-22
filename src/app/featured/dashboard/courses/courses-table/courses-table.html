@@ -1,4 +1,4 @@
-<button id="create" mat-flat-button color="primary" routerLink="create">Crear Curso</button>
+<button id="create" mat-flat-button color="primary" routerLink="create">Agregar móvil</button>
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
@@ -12,33 +12,32 @@
 <div class="mat-elevation-z8" [style.display]="(isLoading$ | async) ? 'none' : 'block'">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <th mat-header-cell *matHeaderCellDef>Móvil</th>
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <th mat-header-cell *matHeaderCellDef>Patente</th>
       <td mat-cell *matCellDef="let row">{{ row.title }}</td>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
       <td mat-cell *matCellDef="let row">{{ row.description }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="beginDate">
-      <th mat-header-cell *matHeaderCellDef>Begin Date</th>
-      <td mat-cell *matCellDef="let row">{{ row.beginDate | date }}</td>
+    <ng-container matColumnDef="lastServiceDate">
+      <th mat-header-cell *matHeaderCellDef>Último Service</th>
+      <td mat-cell *matCellDef="let row">{{ row.lastServiceDate | date }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="endDate">
-      <th mat-header-cell *matHeaderCellDef>End Date</th>
-      <td mat-cell *matCellDef="let row">{{ row.endDate | date }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+    <ng-container matColumnDef="service">
+      <th mat-header-cell *matHeaderCellDef>Service</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-slide-toggle #toggle color="primary" [checked]="row.serviceDone" (change)="onToggleService(row, toggle)">
+          {{ toggle.checked ? 'Hecho' : 'Pendiente' }}
+        </mat-slide-toggle>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -57,7 +56,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+      <td class="mat-cell" [attr.colspan]="displayedColumns.length">No data matching the filter "{{ input.value }}"</td>
     </tr>
   </table>
 

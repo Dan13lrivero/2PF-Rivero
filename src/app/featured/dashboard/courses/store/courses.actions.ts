@@ -9,6 +9,10 @@ export const CoursesActions = createActionGroup({
     'Load Courses Failure': props<{ error: any }>(),
     'Add Course': props<{ course: Course }>(),
     'Update Courses': props<{ courses: Course[] }>(),
+    // Single course update
+    'Update Course': props<{ course: Course }>(),
+    'Update Course Success': props<{ course: Course }>(),
+    'Update Course Failure': props<{ error: any }>(),
     'Delete Course': props<{ id: number }>(),
     'Delete Course Success': props<{ id: number }>(),
     'Delete Course Failure': props<{ error: any }>(),

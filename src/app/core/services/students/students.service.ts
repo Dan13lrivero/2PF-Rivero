@@ -32,19 +32,19 @@ export class StudentsService {
     });
   }
 
-  updateStudent(id: number, student: Student) {
+  updateStudent(id: string, student: Student) {
     this.http.put<Student>(`${this.studentsUrl}/${id}`, student).subscribe(() => {
       this.getStudents();
     });
   }
 
-  deleteStudent(id: number) {
+  deleteStudent(id: string) {
     this.http.delete(`${this.studentsUrl}/${id}`).subscribe(() => {
       this.getStudents();
     });
   }
 
-  setUpdateStudent(id: number) {
+  setUpdateStudent(id: string) {
     this.http.get<Student>(`${this.studentsUrl}/${id}`).subscribe((student) => {
       this.studentEdit.next(student);
     });

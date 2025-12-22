@@ -19,12 +19,12 @@ export class Dashboard {
       url: '/dashboard',
     },
     {
-      name: 'Cursos',
+      name: 'Móviles',
       icon: 'school',
       url: 'courses',
     },
     {
-      name: 'Alumnos',
+      name: 'Chóferes',
       icon: 'groups',
       url: 'students',
     },

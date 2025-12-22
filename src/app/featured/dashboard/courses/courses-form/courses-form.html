@@ -34,24 +34,18 @@
   </mat-form-field>
 
   <mat-form-field class="w-full">
-    <mat-label>Fecha inicio - Fecha fin</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate formControlName="beginDate" placeholder="Fecha inicio" />
-      <input matEndDate formControlName="endDate" placeholder="Fecha fin" />
-    </mat-date-range-input>
-    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"> </mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-label>Último Service</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="lastServiceDate" placeholder="Seleccionar fecha" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error> {{ getError('lastServiceDate') }} </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="w-full">
-    <mat-label>Estado</mat-label>
-    <mat-select name="status" formControlName="status">
-      <mat-option value="SCHEDULED">Programado</mat-option>
-      <mat-option value="STARTED">Iniciado</mat-option>
-      <mat-option value="FINISHED">Terminado</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="w-full">
+    <mat-slide-toggle formControlName="serviceDone">
+      {{ createForm.get('serviceDone')?.value ? 'Hecho' : 'Pendiente' }}
+    </mat-slide-toggle>
+  </div>
 
   <button mat-raised-button color="primary">Guardar</button>
 </form>

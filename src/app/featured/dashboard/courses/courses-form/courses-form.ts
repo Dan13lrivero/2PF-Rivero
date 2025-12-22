@@ -47,11 +47,11 @@ export class CoursesForm {
     this.router.navigate(['dashboard', 'courses']);
   }
 
-  inputValid(inputName: 'title' | 'description' | 'beginDate' | 'endDate') {
+  inputValid(inputName: 'title' | 'description' | 'lastServiceDate') {
     return this.createForm.get(inputName)?.valid && this.createForm.get(inputName)?.touched;
   }
 
-  inputInvalid(inputName: 'title' | 'description' | 'beginDate' | 'endDate') {
+  inputInvalid(inputName: 'title' | 'description' | 'lastServiceDate') {
     return (
       this.createForm.get(inputName)?.invalid &&
       this.createForm.get(inputName)?.touched &&
@@ -59,7 +59,7 @@ export class CoursesForm {
     );
   }
 
-  getError(inputName: 'title' | 'description' | 'beginDate' | 'endDate') {
+  getError(inputName: 'title' | 'description' | 'lastServiceDate') {
     if (!this.createForm.get(inputName)?.errors) {
       return null;
     }

@@ -4,7 +4,8 @@ export const formGroup = {
   id: [''],
   title: ['', [Validators.required, Validators.minLength(3)]],
   description: ['', [Validators.required, Validators.minLength(3)]],
-  beginDate: ['', [Validators.required]],
-  endDate: ['', [Validators.required]],
-  status: ['SCHEDULED', [Validators.required]],
+  // Solo la fecha del último service
+  lastServiceDate: ['', [Validators.required]],
+  // Toggle: true = hecho, false = pendiente
+  serviceDone: [false],
 };

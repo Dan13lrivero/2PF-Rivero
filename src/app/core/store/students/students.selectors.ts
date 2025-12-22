@@ -16,5 +16,10 @@ export const selectStudentsLoading = createSelector(
 
 export const selectStudentsError = createSelector(
   selectStudentsState,
-  (state) => state['error']
+  (state) => state.error
+);
+
+export const selectStudentEdit = createSelector(
+  selectStudentsState,
+  (state) => state.studentEdit
 );

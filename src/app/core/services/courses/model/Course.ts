@@ -2,24 +2,17 @@ export interface Course {
   id: number | string;
   title: string;
   description: string;
-  beginDate: Date;
-  endDate: Date;
-  status: CourseStatus;
-}
-
-export enum CourseStatus {
-  STARTED = 'STARTED',
-  SCHEDULED = 'SCHEDULED',
-  FINISHED = 'FINISHED',
-  CANCELLED = 'CANCELLED',
+  // Fecha del último service
+  lastServiceDate?: Date;
+  // true = service hecho, false = pendiente
+  serviceDone: boolean;
 }
 
 export const courseColumns: string[] = [
   'id',
   'title',
   'description',
-  'beginDate',
-  'endDate',
-  'status',
+  'lastServiceDate',
+  'service',
   'actions',
 ];

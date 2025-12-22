@@ -36,7 +36,9 @@ export class CoursesTable implements AfterViewInit {
 
     this.courses$.subscribe({
       next: (courses) => {
-        this.dataSource.data = courses;
+        // Ensure local overrides are always applied to avoid flicker on pagination
+        const merged = this.courseService.applyOverridesToCourses(courses as any);
+        this.dataSource.data = merged as Course[];
         this.updatePaginator();
       },
       error: (error) => {
@@ -60,6 +62,20 @@ export class CoursesTable implements AfterViewInit {
 
   onDeleteCourse(id: number) {
     this.store.dispatch(CoursesActions.deleteCourse({ id }));
+  }
+
+  onToggleService(row: Course, toggle: any) {
+    // Do not mutate the incoming row (it may be frozen in the store)
+    const serviceDone = !!toggle.checked;
+    const date = serviceDone ? new Date() : row.lastServiceDate ? new Date(row.lastServiceDate) : undefined;
+    const updated: Course = { ...row, serviceDone, lastServiceDate: date };
+
+    // Persist override locally to avoid flicker on quick navigations (serviceDone + date)
+    this.courseService.setServiceOverride(row.id, serviceDone, date);
+    // Update local cache immediately
+    this.courseService.setLocalCourse(updated);
+    // Dispatch an action so the store/effects attempt to persist to server
+    this.store.dispatch(CoursesActions.updateCourse({ course: updated }));
   }
 
   applyFilter(event: Event) {

@@ -57,6 +57,28 @@ export const reducer = createReducer(
             isLoading: false,
             error,
         }
+    }),
+    on(CoursesActions.updateCourse, (state, { course }) => {
+        return {
+            ...state,
+            isLoading: true,
+            // Optimistic update: update the course in the store immediately
+            courses: state.courses.map(c => (String(c.id) === String(course.id) ? course : c)),
+        }
+    }),
+    on(CoursesActions.updateCourseSuccess, (state, { course }) => {
+        return {
+            ...state,
+            isLoading: false,
+            courses: state.courses.map(c => (String(c.id) === String(course.id) ? course : c)),
+        }
+    }),
+    on(CoursesActions.updateCourseFailure, (state, { error }) => {
+        return {
+            ...state,
+            isLoading: false,
+            error,
+        }
     })
 )
 

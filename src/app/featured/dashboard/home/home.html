@@ -2,17 +2,6 @@
   <div class="home-container admin-bg">
     <h1>Bienvenido {{ (user$ | async)?.username }}</h1>
     <div class="container-chart">
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-content style="text-align: center;">
-          <p>
-            Este es un background exclusivo para admins 
-          </p>
-        </mat-card-content>
-        <mat-card-actions style="display: flex; justify-content: center;">
-          <button matButton>LIKE</button>
-          <button matButton>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
     </div>
   </div>
 } @else {

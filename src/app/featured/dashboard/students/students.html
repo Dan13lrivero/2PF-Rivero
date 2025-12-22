@@ -1,2 +1,10 @@
-<user-list [students]="studentsList"></user-list>
-<app-user-form></app-user-form>
+<div class="students-container">
+  @if (loading$ | async) {
+    <div style="display: flex; justify-content: center; padding: 40px;">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else {
+    <user-list [students]="(students$ | async) || []" [showCI]="true"></user-list>
+    <app-user-form></app-user-form>
+  }
+</div>

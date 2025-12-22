@@ -5,7 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing-module';
 import { Dashboard } from './dashboard';
 import { SharedModule } from '../../shared/shared-module';
 import { Home } from './home/home';
-import { UsersModule } from '../../users/users-module';
+import { UsersModule } from './users/users-module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';

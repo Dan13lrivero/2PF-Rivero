@@ -2,3 +2,53 @@
   margin-bottom: 1rem;
   margin-right: 1rem;
 }
+
+/* Dark theme for the table area to keep contrast over the background image */
+.mat-elevation-z8 {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell, td.mat-cell, th, td {
+  color: #fff;
+}
+
+th.mat-header-cell {
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+td.mat-cell {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+mat-paginator {
+  color: #fff;
+}
+
+mat-form-field {
+  color: #fff;
+}
+
+/* Make slide toggle label visible */
+.mat-slide-toggle .mat-slide-toggle-content {
+  color: #fff;
+}
+
+/* Adjust icons/buttons contrast */
+button.mat-icon-button mat-icon {
+  color: #fff;
+}
+
+/* Ensure filter input stands out */
+mat-form-field .mat-form-field-infix {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 4px 8px;
+  border-radius: 4px;
+}

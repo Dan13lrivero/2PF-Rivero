@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatSortModule,
     MatDatepickerModule,
     MatSelectModule,
+    MatSlideToggleModule,
   ],
   exports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatSortModule,
     MatDatepickerModule,
     MatSelectModule,
+    MatSlideToggleModule,
   ],
   providers: [provideNativeDateAdapter()],
 })

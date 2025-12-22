@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from '../../../core/models/Student'; 
-import { StudentsService } from '../../../core/services/students/students.service'; 
+import { Student } from '../../../core/models/Student';
 import { CommonModule } from '@angular/common';
-import { UsersList } from '../../../users/components/users-list/users.list';
-import { UserForm } from '../../../users/components/user-form/user-form';
-import { UsersModule } from '../../../users/users-module';
+import { Store } from '@ngrx/store';
+import { RootState } from '../../../core/store';
+import { StudentsActions } from '../../../core/store/students/students.actions';
+import { selectStudents, selectStudentsLoading } from '../../../core/store/students/students.selectors';
+import { Observable } from 'rxjs';
+import { UsersModule } from '../users/users-module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-students',
   standalone: true,
-  imports: [CommonModule, UsersModule],
+  imports: [CommonModule, UsersModule, MatProgressSpinnerModule],
   templateUrl: './students.html'
 })
 export class Students implements OnInit {
-  studentsList: Student[] = []; 
+  students$: Observable<Student[]>;
+  loading$: Observable<boolean>;
 
-  constructor(private studentsService: StudentsService) {} 
+  constructor(private store: Store<RootState>) {
+    this.students$ = this.store.select(selectStudents);
+    this.loading$ = this.store.select(selectStudentsLoading);
+  }
 
   ngOnInit(): void {
-    this.studentsService.students$.subscribe(students => this.studentsList = students); 
-    this.studentsService.getStudents(); 
+    this.store.dispatch(StudentsActions.loadStudents());
   }
 }

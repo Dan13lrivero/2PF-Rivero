@@ -1,6 +1,6 @@
 <mat-drawer-container class="drawer-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <h4>Platform Learning</h4>
+    <h4>Taxis 32</h4>
     <mat-nav-list>
       <a mat-list-item *ngFor="let item of listItems" [routerLink]="item.url">
         <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
@@ -18,7 +18,7 @@
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Entorno Virtual de Aprendizaje</span>
+      <span>Central de Taxis 32</span>
     </mat-toolbar>
 
     <div class="main-content">
