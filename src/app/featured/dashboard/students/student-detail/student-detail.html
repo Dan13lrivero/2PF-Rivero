@@ -14,7 +14,29 @@
 
     <button mat-icon-button (click)="nextMonth()" aria-label="Siguiente mes"><mat-icon>chevron_right</mat-icon></button>
 
-    <div class="summary">Promedio comisión: <strong>{{ averageCommission | number:'1.2-2' }}</strong></div>
+    <div class="stats-panel">
+      <div class="stat">
+        <div class="label">Comisión total</div>
+        <div class="value">{{ totalCommission | currency:'USD':'symbol':'1.0-0' }}</div>
+      </div>
+      <div class="stat">
+        <div class="label">Venta total</div>
+        <div class="value">{{ totalSales | currency:'USD':'symbol':'1.0-0' }}</div>
+      </div>
+      <div class="stat">
+        <div class="label">Promedio venta</div>
+        <div class="value">{{ averageSale | currency:'USD':'symbol':'1.0-0' }}</div>
+      </div>
+      <div class="stat">
+        <div class="label">Horas totales</div>
+        <div class="value">{{ totalHours | number:'1.0-0' }}</div>
+      </div>
+
+      <div class="saving-indicator" *ngIf="isSaving">
+        <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+        <span>Guardando...</span>
+      </div>
+    </div>
   </div>
 
   <div class="table-wrapper">
@@ -31,11 +53,17 @@
       <tbody>
         <tr *ngFor="let row of days">
           <td>{{ row.day }}</td>
-          <td><input type="number" [value]="row.hours" (change)="updateRow(row, 'hours', $any($event.target).value)" /></td>
-          <td><input type="text" [value]="row.detail" (change)="updateRow(row, 'detail', $any($event.target).value)" /></td>
-          <td><input type="number" [value]="row.sale" (change)="updateRow(row, 'sale', $any($event.target).value)" /></td>
+          <td><input type="number" [value]="row.hours" (input)="updateRow(row, 'hours', $any($event.target).value)" /></td>
+          <td><input type="text" [value]="row.detail" (input)="updateRow(row, 'detail', $any($event.target).value)" /></td>
+          <td>
+            <div class="input-with-currency">
+              <input type="text" inputmode="numeric" [value]="formatCurrencyValue(row.sale)" (input)="onSaleInput(row, $any($event.target).value)" />
+            </div>
+          </td>
           <td class="commission-cell">
-            <input type="number" [value]="(row.commissionOverride !== null && row.commissionOverride !== undefined) ? row.commissionOverride : ({ hours: row.hours, sale: row.sale } | commission)" (change)="updateCommission(row, $any($event.target).value)" />
+            <div class="input-with-currency">
+              <input type="text" inputmode="numeric" [value]="formatCurrencyValue((row.commissionOverride !== null && row.commissionOverride !== undefined) ? row.commissionOverride : calculateCommission(row))" (input)="onCommissionInput(row, $any($event.target).value)" />
+            </div>
             <button mat-icon-button title="Auto" (click)="resetCommission(row)"><mat-icon>autorenew</mat-icon></button>
           </td>
         </tr>
