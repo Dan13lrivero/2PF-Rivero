@@ -21,13 +21,13 @@
       "title": "ITX 1212",
       "description": "Parada en Paysandú Shopping Terminal.\nPadrón .... ",
       "lastServiceDate": "2025-06-17T03:00:00.000Z",
-      "serviceDone": true
+      "serviceDone": false
     },
     {
       "id": "2",
       "title": "ITX 1267",
       "description": "Parada en Paysandú Shopping Terminal. Padrón ....",
-      "lastServiceDate": "2025-12-22T19:09:23.745Z",
+      "lastServiceDate": "2025-12-23T00:18:50.840Z",
       "serviceDone": false
     },
     {
@@ -56,14 +56,14 @@
       "title": "ITX 1320",
       "description": "Parada en Paysandú Shopping Terminal. Padrón ....",
       "lastServiceDate": "2025-12-22T19:15:35.045Z",
-      "serviceDone": true
+      "serviceDone": false
     },
     {
       "id": "8",
       "title": "ITX 1271",
       "description": "Coche contratado.",
       "lastServiceDate": "2025-12-30T03:00:00.000Z",
-      "serviceDone": true
+      "serviceDone": false
     }
   ],
   "students": [

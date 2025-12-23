@@ -49,4 +49,8 @@ export class StudentsService {
       this.studentEdit.next(student);
     });
   }
+
+  getStudentById(id: string) {
+    return this.http.get<Student>(`${this.studentsUrl}/${id}`);
+  }
 }

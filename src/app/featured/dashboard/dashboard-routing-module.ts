@@ -11,7 +11,13 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: Home },
       { path: 'courses', loadChildren: () => import('./courses/courses-module').then(m => m.CoursesModule) },
-      { path: 'students', loadComponent: () => import('./students/students').then(m => m.Students) }
+      { 
+        path: 'students',
+        children: [
+          { path: '', loadComponent: () => import('./students/students').then(m => m.Students) },
+          { path: ':id', loadComponent: () => import('./students/student-detail/student-detail').then(m => m.StudentDetail) }
+        ]
+      }
     ]
   }
 ];

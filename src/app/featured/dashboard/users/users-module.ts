@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../../../shared/pipes/shared-modules';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule, 
     MatInputModule, 
     MatToolbarModule, 
-    MatSidenavModule
+    MatSidenavModule,
+    RouterModule
   ],
   exports: [
     Users,

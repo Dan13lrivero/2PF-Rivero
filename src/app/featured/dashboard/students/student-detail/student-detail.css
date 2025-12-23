@@ -1,0 +1,36 @@
+.main-card {
+  background: #fff; /* ensure white background */
+  color: #000; /* make text readable on white */
+  padding: 16px;
+}
+
+.toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.month-select { min-width: 180px; }
+
+.summary { margin-left: auto; font-weight: 500; }
+
+.table-wrapper { overflow-x: auto; }
+
+.detail-table { width: 100%; border-collapse: collapse; }
+.detail-table th, .detail-table td { border: 1px solid #ddd; padding: 8px; text-align: left; color: #000; }
+.detail-table th { background: #e8f3ff; }
+.detail-table input {
+  width: 100px;
+  padding: 4px 6px;
+  color: #000;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.detail-table input[type="text"] { width: 180px; }
+
+.commission-cell { display: flex; align-items: center; gap: 0.5rem; }
+.commission-cell input { width: 110px; }
+

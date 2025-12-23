@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { Students } from './students';
 
 const routes: Routes = [
- {
-  path: 'students',
-  loadComponent: () => import('./students').then(m => m.Students)
-}
-,
+  {
+    path: 'students',
+    children: [
+      { path: '', loadComponent: () => import('./students').then(m => m.Students) },
+      { path: ':id', loadComponent: () => import('./student-detail/student-detail').then(m => m.StudentDetail) }
+    ]
+  }
 ];
 
 @NgModule({
