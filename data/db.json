@@ -21,7 +21,7 @@
       "title": "ITX 1212",
       "description": "Parada en Paysandú Shopping Terminal.\nPadrón .... ",
       "lastServiceDate": "2025-12-12T03:00:00.000Z",
-      "serviceDone": true
+      "serviceDone": false
     },
     {
       "id": "2",
@@ -71,7 +71,8 @@
       "id": "1",
       "nombre": "Maximiliano",
       "apellido": "Barale",
-      "ci": "4.511.496-7"
+      "ci": "4.511.496-7",
+      "lastDecemberCommission": 0
     },
     {
       "id": "2",
@@ -595,17 +596,17 @@
       "days": [
         {
           "day": 1,
-          "hours": 12,
+          "hours": 0,
           "detail": "",
-          "sale": 30000,
-          "commissionOverride": 9500
+          "sale": 0,
+          "commissionOverride": 800
         },
         {
           "day": 2,
-          "hours": 12,
+          "hours": 0,
           "detail": "",
-          "sale": 30000,
-          "commissionOverride": null
+          "sale": 0,
+          "commissionOverride": 0
         },
         {
           "day": 3,
@@ -821,14 +822,686 @@
           "day": 1,
           "hours": 12,
           "detail": "",
-          "sale": 30000,
+          "sale": 0,
           "commissionOverride": null
         },
         {
           "day": 2,
           "hours": 12,
           "detail": "",
-          "sale": 30000,
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 3,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 4,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 5,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 6,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 7,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 8,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 9,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 10,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 11,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 12,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 13,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 14,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 15,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 16,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 17,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 18,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 19,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 20,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 21,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 22,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 23,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 24,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 25,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 26,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 27,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 28,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 29,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 30,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 31,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        }
+      ]
+    },
+    {
+      "id": "3acb",
+      "studentId": "1",
+      "month": 1,
+      "days": [
+        {
+          "day": 1,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 2,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 3,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 4,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 5,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 6,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 7,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 8,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 9,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 10,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 11,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 12,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 13,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 14,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 15,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 16,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 17,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 18,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 19,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 20,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 21,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 22,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 23,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 24,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 25,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 26,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 27,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 28,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 29,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 30,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 31,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        }
+      ]
+    },
+    {
+      "id": "c7b1",
+      "studentId": "2",
+      "month": 0,
+      "days": [
+        {
+          "day": 1,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 2,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 3,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 4,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 5,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 6,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 7,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 8,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 9,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 10,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 11,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 12,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 13,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 14,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 15,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 16,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 17,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 18,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 19,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 20,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 21,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 22,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 23,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 24,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 25,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 26,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 27,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 28,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 29,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 30,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 31,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        }
+      ]
+    },
+    {
+      "id": "36d1",
+      "studentId": "2",
+      "month": 9,
+      "days": [
+        {
+          "day": 1,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
+          "commissionOverride": null
+        },
+        {
+          "day": 2,
+          "hours": 0,
+          "detail": "",
+          "sale": 0,
           "commissionOverride": null
         },
         {

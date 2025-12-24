@@ -74,3 +74,11 @@
 .commission-cell { display: flex; align-items: center; gap: 0.5rem; }
 .commission-cell input { width: 110px; }
 
+/* Overview panel styles */
+.overview-panel { margin-left: 1rem; padding: 12px; border-radius: 8px; background: linear-gradient(180deg,#f8fafc,#ffffff); box-shadow: 0 4px 12px rgba(2,6,23,0.03); }
+.overview-row { display:flex; justify-content:space-between; padding: 6px 0; border-bottom: 1px dashed rgba(0,0,0,0.03); align-items:center }
+.overview-row:last-child { border-bottom: none; }
+.overview-row .label { color: #6b7280; }
+.overview-row .value { font-weight: 700; }
+.overview-row input { width: 140px; padding: 6px; border-radius: 6px; border: 1px solid #e6eef6; background: #fff; color: #0f172a; }
+

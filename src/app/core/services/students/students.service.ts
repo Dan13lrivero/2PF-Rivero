@@ -50,6 +50,12 @@ export class StudentsService {
       })
     );
   }
+
+  // Get all months for a specific driver
+  getDriverMonths(studentId: string) {
+    return this.http.get<any[]>(`${this.driverMonthsUrl}?studentId=${studentId}`);
+  }
+
   getStudents() {
     this.http.get<Student[]>(this.studentsUrl).subscribe((students) => {
       this.studentsSubject.next(students);

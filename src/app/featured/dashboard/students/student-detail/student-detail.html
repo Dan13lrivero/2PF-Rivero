@@ -36,10 +36,48 @@
         <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
         <span>Guardando...</span>
       </div>
+
+      <!-- Overview quick stats for the whole year -->
+      <div class="overview-panel" *ngIf="selectedMonthIndex === months.length - 1">
+        <div class="overview-row">
+          <div class="label">Venta acumulada (año)</div>
+          <div class="value">{{ yearTotalSales | currency:'USD':'symbol':'1.0-0' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Comisión acumulada (año)</div>
+          <div class="value">{{ yearTotalCommission | currency:'USD':'symbol':'1.0-0' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Aguinaldo (Junio)</div>
+          <div class="value">{{ aguinaldoJune | currency:'USD':'symbol':'1.0-0' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Aguinaldo (Diciembre)</div>
+          <div class="value">{{ aguinaldoDecember | currency:'USD':'symbol':'1.0-0' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Licencia (valor estimado)</div>
+          <div class="value">{{ licenceAmount | currency:'USD':'symbol':'1.0-0' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Días de licencia generados</div>
+          <div class="value">{{ generatedLicenceDays | number:'1.2-2' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Salario vacacional (valor estimado)</div>
+          <div class="value">{{ vacationPay | currency:'USD':'symbol':'1.0-0' }}</div>
+        </div>
+        <div class="overview-row">
+          <div class="label">Comisión diciembre (año anterior)</div>
+          <div class="value">
+            <input type="text" inputmode="numeric" [value]="formatCurrencyValue(student?.lastDecemberCommission || 0, true)" (input)="onLastDecInput($any($event.target).value)" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="table-wrapper">
+  <div class="table-wrapper" *ngIf="selectedMonthIndex !== months.length - 1">
     <table class="detail-table">
       <thead>
         <tr>
@@ -70,4 +108,6 @@
       </tbody>
     </table>
   </div>
+
+
 </div>
