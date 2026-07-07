@@ -5,9 +5,9 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Angular" #input />
 </mat-form-field>
 
-@if (isLoading$ | async){
+<ng-container *ngIf="isLoading$ | async">
   <mat-spinner></mat-spinner>
-}
+</ng-container>
 
 <div class="mat-elevation-z8" [style.display]="(isLoading$ | async) ? 'none' : 'block'">
   <table mat-table [dataSource]="dataSource">

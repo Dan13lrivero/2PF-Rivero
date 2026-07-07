@@ -36,21 +36,18 @@ export class Login {
     try {
       this.authService
         .login(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe((res) => {
-          console.log(res);
-
-          const user = res;
-
-          if (!user) {
-            throw new Error('Email es inválido');
-          }
-
-          if (user.password !== this.loginForm.value.password) {
-            throw new Error('Contraseña es inválida');
-          }
-
-          this.store.dispatch(setAuthUser({ payload: user }));
-          this.router.navigate(['dashboard']);
+        .subscribe({
+          next: (res) => {
+            const user = res;
+            if (!user) {
+              throw new Error('Email es inválido');
+            }
+            this.store.dispatch(setAuthUser({ payload: user }));
+            this.router.navigate(['dashboard']);
+          },
+          error: (err) => {
+            alert(err?.message || 'Error de autenticación');
+          },
         });
     } catch (error) {
       console.log(error);

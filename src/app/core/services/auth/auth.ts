@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../../utils/constants';
 import { User } from './model/User';
 import { Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { RootState } from '../../store';
 import { selectUser } from '../../store/auth/auth.selector';
@@ -13,6 +13,7 @@ import { setAuthUser } from '../../store/auth/auth.actions';
   providedIn: 'root',
 })
 export class AuthService {
+  private authUrl = `${API_URL}/auth/login`;
   private usersUrl = `${API_URL}/users`;
   user: User | null = null;
   user$: Observable<any>;
@@ -23,29 +24,25 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     if (token) {
-      const [email, password] = token.split("&");
-      this.login(email, password).subscribe((user) => {
-        this.store.dispatch(setAuthUser({ payload: user }));
-      });
+      this.user = { id: 'local', username: 'Usuario', email: '', password: '', role: 'USER' as any };
     }
   }
 
   login(email: string, password: string) {
-    return this.http.get<User[]>(this.usersUrl).pipe(
-      map((users) => {
-        const user = users.find((user) => user.email === email);
-
+    return this.http.post<any>(this.authUrl, { email, password }).pipe(
+      map((res) => {
+        const user = res.user;
         if (!user) {
           throw new Error('Usuario no encontrado');
         }
-        if (user.password != password){
-          throw new Error('Contraseña incorrecta');
-        }
-        this.setToken(`${user.email}&${user.password}`);
-        this.store.dispatch(setAuthUser({ payload: user}));
+        this.setToken(`${user.email}&${password}`);
+        this.store.dispatch(setAuthUser({ payload: user }));
         return user;
+      }),
+      catchError((error) => {
+        return throwError(() => new Error(error?.error?.error || 'Credenciales inválidas'));
       })
-    )
+    );
   }
 
   logout() {

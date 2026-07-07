@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CoursesService } from '../../../../core/services/courses/courses';
+import { RootState } from '../../../../core/store';
+import { CoursesActions } from '../store/courses.actions';
 import { formGroup } from './validators';
 
 @Component({
@@ -19,7 +22,8 @@ export class CoursesForm {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private courseService: CoursesService,
-    private router: Router
+    private router: Router,
+    private store: Store<RootState>
   ) {
     this.createForm = this.fb.group(formGroup);
 
@@ -29,7 +33,7 @@ export class CoursesForm {
         this.isEditing = true;
         this.courseService.getCourse(this.courseId).subscribe((course) => {
           if (course) {
-            this.createForm.patchValue(course);
+            this.createForm.patchValue({ ...course, id: this.courseId });
           }
         });
       }
@@ -37,10 +41,15 @@ export class CoursesForm {
   }
 
   onSubmit(): void {
+    const course = this.createForm.getRawValue();
+    if (this.isEditing && this.courseId !== null) {
+      course.id = String(this.courseId);
+    }
+
     if (this.isEditing) {
-      this.courseService.updateCourse(this.createForm.value);
+      this.store.dispatch(CoursesActions.updateCourse({ course }));
     } else {
-      this.courseService.addCourse(this.createForm.value);
+      this.courseService.addCourse(course);
     }
     this.createForm.reset();
 

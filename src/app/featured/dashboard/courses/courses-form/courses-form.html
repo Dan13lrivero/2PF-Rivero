@@ -1,13 +1,13 @@
 <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-  @if (isEditing) {
-  <mat-form-field appearance="fill">
-    <mat-label>ID</mat-label>
-    <input matInput disabled value="{{ courseId }}" />
-  </mat-form-field>
-  }
+  <ng-container *ngIf="isEditing">
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <input matInput [disabled]="true" formControlName="id" />
+    </mat-form-field>
+  </ng-container>
 
   <mat-form-field class="w-full">
-    <mat-label>Titulo</mat-label>
+    <mat-label>Patente</mat-label>
     <input
       [ngClass]="{
           'is-invalid': inputInvalid('title'),

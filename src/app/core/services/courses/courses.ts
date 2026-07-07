@@ -46,7 +46,13 @@ export class CoursesService {
   }
 
   getCourse(id: number) {
-    return this.http.get<Course>(`${this.coursesUrl}/${id}`);
+    return this.http.get<Course>(`${this.coursesUrl}/${id}`).pipe(
+      map((course: any) => ({
+        ...course,
+        serviceDone: course.serviceDone === true,
+        lastServiceDate: course.lastServiceDate ? new Date(course.lastServiceDate) : undefined,
+      }))
+    );
   }
 
   addCourse(course: Course) {
@@ -70,13 +76,18 @@ export class CoursesService {
 
   // Effect-friendly update that returns the HTTP observable
   updateCourseForEffect(course: Course) {
+    const id = String(course.id ?? '').trim();
+    if (!id) {
+      throw new Error('Course id is required for update');
+    }
+
     // Sanitize payload so server stores primitive types (ISO date string, boolean)
     const payload: any = {
       ...course,
       lastServiceDate: course.lastServiceDate ? new Date(course.lastServiceDate).toISOString() : null,
       serviceDone: !!course.serviceDone,
     };
-    return this.http.put<Course>(`${this.coursesUrl}/${course.id}`, payload);
+    return this.http.put<Course>(`${this.coursesUrl}/${id}`, payload);
   }
 
   // Update the local cache (BehaviorSubject) with the new course
