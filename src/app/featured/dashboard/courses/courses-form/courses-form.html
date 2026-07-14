@@ -1,10 +1,8 @@
 <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-  <ng-container *ngIf="isEditing">
-    <mat-form-field appearance="fill">
-      <mat-label>ID</mat-label>
-      <input matInput [disabled]="true" formControlName="id" />
-    </mat-form-field>
-  </ng-container>
+  <mat-form-field appearance="fill">
+    <mat-label>Móvil</mat-label>
+    <input matInput [disabled]="isEditing" formControlName="id" />
+  </mat-form-field>
 
   <mat-form-field class="w-full">
     <mat-label>Patente</mat-label>

@@ -1,7 +1,17 @@
 import { Router } from 'express';
-import { memoryStore } from '../data/in-memory-store.js';
+import mongoose from 'mongoose';
+import { Course } from '../models/course.model.js';
+import { memoryStore, persistMemoryStore } from '../data/in-memory-store.js';
 
 const router = Router();
+
+const usingMongo = async () => {
+  try {
+    return mongoose.connection.readyState === 1;
+  } catch {
+    return false;
+  }
+};
 
 const normalizeUser = (user) => ({
   ...user,
@@ -83,8 +93,15 @@ router.get('/courses/:id', (req, res) => {
 });
 
 router.post('/courses', (req, res) => {
-  const course = normalizeCourse({ ...req.body, id: nextId(memoryStore.courses) });
+  const requestedId = String(req.body.id ?? '').trim();
+  const id =
+    requestedId && !memoryStore.courses.some((course) => String(course.id) === requestedId)
+      ? requestedId
+      : nextId(memoryStore.courses);
+
+  const course = normalizeCourse({ ...req.body, id });
   memoryStore.courses.push(course);
+  persistMemoryStore();
   res.status(201).json(course);
 });
 
@@ -95,6 +112,7 @@ router.put('/courses/:id', (req, res) => {
   }
   const updated = normalizeCourse({ ...memoryStore.courses[index], ...req.body, id: req.params.id });
   memoryStore.courses[index] = updated;
+  persistMemoryStore();
   res.json(updated);
 });
 
@@ -104,6 +122,7 @@ router.delete('/courses/:id', (req, res) => {
     return res.status(404).json({ error: 'Curso no encontrado' });
   }
   memoryStore.courses.splice(index, 1);
+  persistMemoryStore();
   res.status(204).send();
 });
 

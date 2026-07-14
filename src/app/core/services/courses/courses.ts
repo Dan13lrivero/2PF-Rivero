@@ -56,8 +56,10 @@ export class CoursesService {
   }
 
   addCourse(course: Course) {
-    const newId = String(Number(this.courses[this.courses.length - 1].id) + 1);
-    course.id = newId;
+    if (!course.id || String(course.id).trim() === '') {
+      const lastId = this.courses.length ? Number(this.courses[this.courses.length - 1].id) : 0;
+      course.id = String(lastId + 1);
+    }
     this.http.post<Course>(this.coursesUrl, course).subscribe((course) => {
       this.courses.push(course);
       this.courseSubject.next([...this.courses]);
